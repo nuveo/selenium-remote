@@ -1,0 +1,7 @@
+version: "2"
+services:
+  selenium:
+      restart: always
+      build: ./
+      ports:
+        - "4444:4444"
