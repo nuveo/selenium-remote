@@ -20,6 +20,11 @@ RUN \
   rm -rf /var/cache/oracle-jdk8-installer
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
 
+# Selenium
+RUN mkdir -p /opt/selenium
+RUN curl http://selenium-release.storage.googleapis.com/2.53/selenium-server-standalone-2.53.1.jar -o /opt/selenium/selenium-server-standalone.jar
+RUN ls /opt/selenium/selenium-server-standalone.jar
+
 # Chrome
 RUN curl https://dl-ssl.google.com/linux/linux_signing_key.pub -o /tmp/google.pub
 RUN cat /tmp/google.pub | apt-key add -; rm /tmp/google.pub
@@ -56,11 +61,6 @@ RUN wget --no-verbose -O /tmp/geckodriver.tar.gz https://github.com/mozilla/geck
   && chmod 755 /opt/geckodriver-$GECKODRIVER_VERSION \
   && ln -fs /opt/geckodriver-$GECKODRIVER_VERSION /usr/bin/geckodriver \
   && ln -fs /opt/geckodriver-$GECKODRIVER_VERSION /usr/bin/wires
-
-# Selenium
-RUN mkdir -p /opt/selenium
-RUN curl http://selenium-release.storage.googleapis.com/2.53/selenium-server-standalone-2.53.1.jar -o /opt/selenium/selenium-server-standalone.jar
-RUN ls /opt/selenium/selenium-server-standalone.jar
 
 ENV DISPLAY :10
 COPY entrypoint.sh /opt/selenium/entrypoint.sh
