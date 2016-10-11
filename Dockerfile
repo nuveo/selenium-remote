@@ -62,7 +62,7 @@ RUN wget --no-verbose -O /tmp/geckodriver.tar.gz https://github.com/mozilla/geck
   && ln -fs /opt/geckodriver-$GECKODRIVER_VERSION /usr/bin/geckodriver \
   && ln -fs /opt/geckodriver-$GECKODRIVER_VERSION /usr/bin/wires
 
-ENV DISPLAY :10
+ENV DISPLAY :20
 COPY entrypoint.sh /opt/selenium/entrypoint.sh
 
 EXPOSE 4444
